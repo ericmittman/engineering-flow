@@ -7,10 +7,11 @@ end-to-end, plus the connective tissue that makes it run itself.
 ## What you get
 
 ```
-skill-router nudges ─▶ /feature ─▶ brainstorming ─▶ spec ─▶ writing-plans
-        ─▶ execution-strategy (serial vs parallel, decided not asked)
-        ─▶ subagent execution (spec review + quality review per task)
-        ─▶ smart-simplify pass on Stop ─▶ finished branch
+/feature (your best model) ─▶ security-aware brainstorm ─▶ spec
+  └▶ /feature-build (opus) ─▶ [SEC]/[REL]-annotated plan ─▶ execution-strategy
+        ─▶ reviewed execution (sonnet builds · opus reviews · haiku verifies
+           · nested parallel tracks on CLI ≥ 2.1.172, flat otherwise)
+  └▶ /feature-review (your best model) ─▶ coverage + seams + full security audit
 ```
 
 - **/feature `<idea>`** — one command runs the whole pipeline, honoring every gate.
@@ -21,6 +22,21 @@ skill-router nudges ─▶ /feature ─▶ brainstorming ─▶ spec ─▶ writ
   graph and decides serial vs parallel execution instead of asking.
 - **smart-simplify** (Stop + PostToolUse hooks + skill) — after multi-file changes, the
   session can't end without a simplification pass over what changed.
+
+## Security posture
+
+One rubric file (`secure-design` skill) drives all three stages: design-time questions
+in the brainstorm, [SEC]/[REL] flags on plan tasks, inline diff checks on flagged
+tasks during the build, and an unconditional full-diff security + reliability
+assessment at review. The reliability half exists because untimeouted blocking waits
+are the most common serious bug we ship — the rubric makes them un-shippable quietly.
+
+## Model tiers
+
+Design and final review run on your session's strongest model. `/feature-build` pins
+itself to Opus. Inside the build: Sonnet implements, Opus reviews, Haiku runs
+verification commands and inventories (never reviews, never decides). No Fable/Opus
+access? Stages degrade to your session model — the pipeline still works.
 
 ## Install
 
@@ -39,8 +55,9 @@ Or manually, inside any Claude Code session:
 
 ## Smoke test
 
-1. `/feature add a healthcheck endpoint` → you should see "I'm using the brainstorming
-   skill" and get a clarifying question, not code.
+1. `/feature add a healthcheck endpoint` →
+   brainstorming announces and asks a question (no code); approve the spec, then
+   `/feature-build` writes a flagged plan before any implementation.
 2. Edit three files in one session, then stop → the Stop hook demands a simplification
    pass before the session ends.
 3. Run `npm test` (or pytest/go test) → the router nudges test-driven-development.

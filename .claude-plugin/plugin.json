@@ -2,7 +2,7 @@
   "name": "engineering-flow",
   "displayName": "Engineering Flow",
   "description": "Opinionated engineering workflow: superpowers chained end-to-end — skill routing nudges, execution-strategy analysis, automatic simplification passes, and a /feature pipeline command",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": { "name": "Eric Mittman" },
   "repository": "https://github.com/ericmittman/engineering-flow",
   "license": "MIT",

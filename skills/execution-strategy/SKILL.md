@@ -1,7 +1,7 @@
 ---
 name: execution-strategy
 description: Evaluate a plan's task dependencies to determine serial vs parallel execution — builds a dependency graph, identifies the critical path, and recommends the right approach without asking
-version: 1.1.0
+version: 1.2.0
 category: general
 tools: [Read, Glob, Grep]
 tags: [execution-strategy, serial, parallel, dependency-graph, plan-execution, task-ordering, subagent, orchestration]
@@ -110,6 +110,16 @@ Use this decision matrix:
 ```
 
 **When in doubt, recommend serial.** The cost of a race condition or merge conflict exceeds the time saved by parallelism. Parallelism is worth it when you have genuinely independent workstreams of substantial size.
+
+### Output for coordinators (engineering-flow nested mode)
+
+When recommending parallel/hybrid, define each track in coordinator-consumable form:
+
+- **Track <name>**: tasks [list], owns files [explicit path list], depends on tracks
+  [list or none]
+
+A track's ownership set must be disjoint from every other track's. If you cannot make
+the sets disjoint, the tasks are not parallel — say so and recommend serial.
 
 ## Output Format
 
