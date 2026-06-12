@@ -12,7 +12,7 @@ findings list for the user — fixes happen via a follow-up build, not here.
 
 Journal: $ARGUMENTS if given, else newest in docs/builds/. No journal → STOP:
 "No build journal found — run /feature-build first." From it: the spec, the plan, the
-diff range (base-sha → HEAD), the flags column, and prior concerns.
+diff range (base-sha → head-sha; additionally exclude docs/builds/ from the diff: `git diff <base> <head> -- . ':(exclude)docs/builds'`), the flags column, and prior concerns.
 
 ## Assess (three passes over the REAL diff — never trust reports)
 

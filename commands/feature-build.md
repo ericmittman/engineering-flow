@@ -5,6 +5,8 @@ disable-model-invocation: true
 model: opus
 ---
 
+(If your installation lacks Opus access and the `model: opus` pin errors, remove the `model:` line from this command file — the pipeline runs on your session model with the same structure.)
+
 You are running STAGE 2 of the engineering-flow pipeline (Opus build phase).
 
 ## Locate inputs

@@ -19,12 +19,15 @@ survived a machine handoff did so only because a handoff doc existed.)
 ## Location & creation
 
 `docs/builds/<feature-slug>-journal.md` in the target repo, created by /feature-build
-immediately after the plan is approved, committed with the plan.
+immediately after the plan is approved, committed with the plan. where `<feature-slug>`
+is the spec filename's topic part (e.g. spec `2026-06-12-tiered-pipeline-design.md` →
+journal `tiered-pipeline-journal.md`) — the deterministic link a resuming session uses
+to find it.
 
 ## Format
 
     # Build Journal — <feature>
-    plan: <path> · spec: <path> · started: <ISO date> · base-sha: <sha before task 1>
+    plan: <path> · spec: <path> · started: <ISO date> · base-sha: <sha before task 1> · head-sha: <last task commit — update it every task>
 
     ## Tasks
     | # | Task | Flags | Status | SHA | Spec rev | Quality rev | Sec/Rel check |
@@ -41,7 +44,7 @@ immediately after the plan is approved, committed with the plan.
 ## Cadence
 
 Update after EVERY task completion (or track report in nested mode) — table row +
-resume pointer, then `git add docs/builds && git commit -m "journal: task N"`. The
+resume pointer + head-sha, then `git add docs/builds && git commit -m "journal: task N"`. The
 journal commit rides with the work; a journal that lags its build is fiction.
 
 ## Resume protocol (/feature-build start)
@@ -54,5 +57,6 @@ journal commit rides with the work; a journal that lags its build is fiction.
 
 ## Handoff to /feature-review
 
-The review stage reads: base-sha → HEAD as the assessment diff, the flags column for
-where inline checks ran, and the concerns section as its starting findings list.
+The review stage reads: base-sha → head-sha as the assessment diff (journal commits
+land after task commits — head-sha keeps doc churn out of the assessment), the flags
+column for where inline checks ran, and the concerns section as its starting findings list.
