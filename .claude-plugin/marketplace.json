@@ -1,14 +1,26 @@
 {
   "name": "engineering-flow",
-  "owner": { "name": "Eric Mittman" },
+  "owner": {
+    "name": "Eric Mittman",
+    "url": "https://github.com/ericmittman"
+  },
   "metadata": {
-    "description": "Marketplace for the Engineering Flow plugin — an opinionated superpowers-based engineering workflow kit"
+    "description": "Marketplace for the Engineering Flow plugin — an opinionated, superpowers-based engineering workflow kit",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "engineering-flow",
       "source": "./",
-      "description": "Superpowers-based engineering workflow kit"
+      "description": "A three-stage engineering pipeline for Claude Code: /feature (security-aware design on your strongest model) → /feature-build (Opus-pinned plan + managed, reviewed execution with nested parallel tracks) → /feature-review (full security & reliability assessment). Includes skill-router nudges, [SEC]/[REL] flagging, build journals with resume, and Haiku-tiered verification.",
+      "author": {
+        "name": "Eric Mittman",
+        "url": "https://github.com/ericmittman"
+      },
+      "homepage": "https://github.com/ericmittman/engineering-flow",
+      "license": "MIT",
+      "category": "workflow",
+      "keywords": ["workflow", "superpowers", "security", "code-review", "pipeline", "subagents", "hooks"]
     }
   ]
 }
