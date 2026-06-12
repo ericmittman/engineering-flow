@@ -1,0 +1,11 @@
+{
+  "name": "engineering-flow",
+  "owner": { "name": "Eric Mittman" },
+  "plugins": [
+    {
+      "name": "engineering-flow",
+      "source": "./",
+      "description": "Superpowers-based engineering workflow kit"
+    }
+  ]
+}
