@@ -59,9 +59,19 @@ while IFS=$'\t' read -r pattern skill_name skill_path description; do
 
         # Output suggestion (3 lines max)
         echo "[SKILL] $skill_name — $description"
-        if [ "$skill_path" = "(plugin)" ]; then
-          PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-          echo "  Read: ${PLUGIN_ROOT}/skills/${skill_name#*:}/SKILL.md"
+        if [ "$skill_path" = "(plugin)" ] || [ "$skill_path" = "-" ]; then
+          # Namespaced skill — decide how to resolve it
+          if [[ "$skill_name" == engineering-flow:* ]]; then
+            # Ships in this plugin — read from disk
+            PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+            echo "  Read: ${PLUGIN_ROOT}/skills/${skill_name#*:}/SKILL.md"
+          elif [[ "$skill_name" == *:* ]]; then
+            # Any other namespace (e.g. superpowers:*) — invoke via Skill tool
+            echo "  Invoke it with the Skill tool: $skill_name"
+          else
+            # Un-namespaced with no path — nothing useful to print; skip path line
+            :
+          fi
         else
           echo "  Read: $skill_path"
         fi
