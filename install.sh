@@ -22,14 +22,11 @@ manual_fallback() {
   cat <<'EOF'
 
 Your claude CLI doesn't support non-interactive plugin commands.
-Run these two commands inside any Claude Code session instead:
-
-  /plugin marketplace add ericmittman/engineering-flow
-  /plugin install engineering-flow@engineering-flow
-
-And for the superpowers dependency:
+Run these commands inside any Claude Code session instead:
 
   /plugin install superpowers@claude-plugins-official
+  /plugin marketplace add ericmittman/engineering-flow
+  /plugin install engineering-flow@engineering-flow
 
 EOF
   exit 0

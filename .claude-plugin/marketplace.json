@@ -1,6 +1,9 @@
 {
   "name": "engineering-flow",
   "owner": { "name": "Eric Mittman" },
+  "metadata": {
+    "description": "Marketplace for the Engineering Flow plugin — an opinionated superpowers-based engineering workflow kit"
+  },
   "plugins": [
     {
       "name": "engineering-flow",
