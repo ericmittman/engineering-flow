@@ -80,6 +80,8 @@ Behavior-preserving ports of the four scripts with exactly these changes:
 - Path resolution via `${CLAUDE_PLUGIN_ROOT}` (hooks.json passes it; scripts fall back
   to their own directory via `$(dirname "$0")` when unset, so the scripts also work
   standalone).
+- The router also merges an optional user-extension file `~/.claude/skill-routes.local.conf`
+  (same format) so adopters — Eric included — add personal routes without forking the kit.
 - `skill-routes.conf` is **rebuilt for the kit**: route targets may ONLY be skills the
   installee is guaranteed to have — `superpowers:*` or this plugin's two skills.
   Eric's personal routes (CLAW, Quinn, nesdev, playwright-library, etc.) stay home.
@@ -127,7 +129,9 @@ After the kit works, Eric's own machine installs the plugin and disables the
 overlapping personal hooks (the settings.json entries for skill-router and the
 simplify pair) to avoid double-firing. His richer personal routes stay in his local
 conf only if he keeps the personal router active INSTEAD of the kit's — choose one
-router, never both. This step is documented in the README's "for the author" footnote
+router, never both. With the `skill-routes.local.conf` extension file, the resolution
+is: Eric adopts the kit's router and migrates his personal routes into the extension
+file. This step is documented in the README's "for the author" footnote
 and executed for Eric as part of the rollout, not left implicit.
 
 ## Testing
