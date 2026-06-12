@@ -6,5 +6,6 @@
   "author": { "name": "Eric Mittman" },
   "repository": "https://github.com/ericmittman/engineering-flow",
   "license": "MIT",
+  "hooks": "./hooks/hooks.json",
   "keywords": ["workflow", "superpowers", "hooks", "skills"]
 }
