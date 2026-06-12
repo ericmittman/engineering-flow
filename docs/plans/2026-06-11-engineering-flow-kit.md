@@ -413,13 +413,13 @@ Expected: exits 0 quickly with no simplify demand (no accumulated edits in state
 
 ### Task 7: Publish + adoption-back (Eric becomes consumer #1)
 
-- [ ] **Step 1: Create the public repo and push** (gh is authenticated as ericmittman):
+- [x] **Step 1: Create the public repo and push** (gh is authenticated as ericmittman):
 ```bash
 cd /Users/eric/repos/engineering-flow && gh repo create ericmittman/engineering-flow --public --source=. --push 2>&1 | tail -2
 ```
 Expected: repo URL printed, branch pushed. GATE: do NOT run this until Task 6's scrub audit passed clean in this same working tree.
 
-- [ ] **Step 2: Install for Eric from the published repo:**
+- [x] **Step 2: Install for Eric from the published repo:**
 ```bash
 claude plugin install superpowers@claude-plugins-official 2>&1 | tail -1   # likely already installed — fine
 claude plugin marketplace add ericmittman/engineering-flow 2>&1 | tail -1
@@ -428,12 +428,12 @@ claude plugin list | grep -i engineering-flow
 ```
 If the non-interactive CLI forms are unsupported, report DONE_WITH_CONCERNS with the exact error — Eric runs the slash-command forms himself (do not simulate them).
 
-- [ ] **Step 3: Migrate personal routes:**
+- [x] **Step 3: Migrate personal routes:**
 ```bash
 cp ~/repos/claude-knowledge/hooks/enforcement/skill-routes.conf ~/.claude/skill-routes.local.conf
 ```
 
-- [ ] **Step 4: Disable the now-duplicated personal hooks** — with backup:
+- [x] **Step 4: Disable the now-duplicated personal hooks** — with backup:
 ```bash
 cp ~/.claude/settings.json ~/.claude/settings.json.bak-ef-adoption
 python3 - <<'EOF'
@@ -453,9 +453,9 @@ EOF
 ```
 Verify the remaining hooks still include observe-task-model, external-analysis-suggest, scan-secrets-output, stop-shim, session-compact-reinject (untouched).
 
-- [ ] **Step 5: Commit nothing here (machine config), but update the repo's plan checkboxes and push:**
+- [x] **Step 5: Commit nothing here (machine config), but update the repo's plan checkboxes and push:**
 ```bash
 cd /Users/eric/repos/engineering-flow && git push origin main 2>&1 | tail -1
 ```
 
-- [ ] **Step 6: Report:** repo URL, install verification output, settings backup path, and the one manual step (if any) left for Eric.
+- [x] **Step 6: Report:** repo URL, install verification output, settings backup path, and the one manual step (if any) left for Eric.
