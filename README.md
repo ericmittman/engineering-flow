@@ -1,3 +1,5 @@
+> **Archived 2026-11-01: an earlier attempt at the orchestration and workflow problem, superseded by babel.**
+
 # engineering-flow
 
 An opinionated engineering workflow for Claude Code: the
